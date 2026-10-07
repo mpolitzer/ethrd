@@ -1,0 +1,13 @@
+ws: "wss://rpc.vibes.base.org/ws"
+db: "file:log.db?_journal_mode=WAL&_busy_timeout=5000"
+ethrd:
+  poll-interval: 12s
+  log-buf-size: 128
+  filter:
+    chunk-size: 1024
+    burst-limit: 1
+    rate-limit: 100
+  bootstrap:
+    block-number: 0
+    combined-abi:
+      file: "erc20-abi.json"

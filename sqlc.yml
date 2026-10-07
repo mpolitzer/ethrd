@@ -1,0 +1,23 @@
+version: "2"
+sql:
+  - schema: "db/migration"
+    queries: "db/query"
+    engine: "sqlite"
+    gen:
+      go:
+        emit_prepared_queries: true
+        emit_json_tags: true
+        package: "db"
+        out: "db"
+        overrides:
+          - db_type: "BYTES(32)"
+            go_type:
+              import: "github.com/ethereum/go-ethereum/common"
+              type: "Hash"
+          - db_type: "BYTES(20)"
+            go_type:
+              import: "github.com/ethereum/go-ethereum/common"
+              type: "Address"
+          - db_type: "UINT64"
+            go_type:
+              type: "uint64"

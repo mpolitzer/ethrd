@@ -1,0 +1,25 @@
+diff --git a/db/queries.sql.go b/db/queries.sql.go
+--- a/db/queries.sql.go
++++ b/db/queries.sql.go
+@@ -49,20 +49,7 @@
+ ON CONFLICT (block_hash, log_index) DO UPDATE SET tags = log.tags | excluded.tags
+ `
+ 
+-type ApplyLogEditParams struct {
+-	TxHash         common.Hash    `json:"tx_hash"`
+-	TxIndex        uint64         `json:"tx_index"`
+-	LogIndex       uint64         `json:"log_index"`
+-	BlockNumber    uint64         `json:"block_number"`
+-	BlockHash      common.Hash    `json:"block_hash"`
+-	BlockTimestamp uint64         `json:"block_timestamp"`
+-	Address        common.Address `json:"address"`
+-	Topics         []byte         `json:"topics"`
+-	Data           []byte         `json:"data"`
+-	Tags           uint64         `json:"tags"`
+-}
+-
+-func (q *Queries) ApplyLogEdit(ctx context.Context, arg ApplyLogEditParams) (int64, error) {
++func (q *Queries) ApplyLogEdit(ctx context.Context, arg Log) (int64, error) {
+ 	result, err := q.exec(ctx, q.applyLogEditStmt, applyLogEdit,
+ 		arg.TxHash,
+ 		arg.TxIndex,

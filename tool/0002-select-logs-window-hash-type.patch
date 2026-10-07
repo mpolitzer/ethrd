@@ -1,0 +1,34 @@
+diff --git a/db/queries.sql.go b/db/queries.sql.go
+index e286b06..5935c60 100644
+--- a/db/queries.sql.go
++++ b/db/queries.sql.go
+@@ -143,10 +143,10 @@ LIMIT ?4
+ `
+ 
+ type SelectLogsWindowAscParams struct {
+-	BlockNumber uint64 `json:"block_number"`
+-	LogIndex    uint64 `json:"log_index"`
+-	BlockHash   uint64 `json:"block_hash"`
+-	Limit       int64  `json:"limit"`
++	BlockNumber uint64      `json:"block_number"`
++	LogIndex    uint64      `json:"log_index"`
++	BlockHash   common.Hash `json:"block_hash"`
++	Limit       int64       `json:"limit"`
+ }
+ 
+ func (q *Queries) SelectLogsWindowAsc(ctx context.Context, arg SelectLogsWindowAscParams) ([]Log, error) {
+@@ -196,10 +196,10 @@ LIMIT ?4
+ `
+ 
+ type SelectLogsWindowDescParams struct {
+-	BlockNumber uint64 `json:"block_number"`
+-	LogIndex    uint64 `json:"log_index"`
+-	BlockHash   uint64 `json:"block_hash"`
+-	Limit       int64  `json:"limit"`
++	BlockNumber uint64      `json:"block_number"`
++	LogIndex    uint64      `json:"log_index"`
++	BlockHash   common.Hash `json:"block_hash"`
++	Limit       int64       `json:"limit"`
+ }
+ 
+ func (q *Queries) SelectLogsWindowDesc(ctx context.Context, arg SelectLogsWindowDescParams) ([]Log, error) {
